@@ -1,0 +1,50 @@
+[
+  {
+    "title": "RoboWars National Champions",
+    "description": "First place in the 30kg combat bot category at RoboWars India 2024",
+    "year": "2024",
+    "icon": "trophy"
+  },
+  {
+    "title": "Best Innovation Award",
+    "description": "Recognized for novel quadruped gait algorithm at IO Conference",
+    "year": "2024",
+    "icon": "star"
+  },
+  {
+    "title": "Makeathon Grand Prize",
+    "description": "48-hour build challenge winners with autonomous delivery bot",
+    "year": "2023",
+    "icon": "award"
+  },
+  {
+    "title": "Published Research",
+    "description": "3 papers accepted at IEEE International Conference on Robotics",
+    "year": "2023",
+    "icon": "document"
+  },
+  {
+    "title": "DRDO Collaboration",
+    "description": "Selected for defence robotics research partnership program",
+    "year": "2024",
+    "icon": "shield"
+  },
+  {
+    "title": "500+ Members Trained",
+    "description": "Workshop series covering ROS, PCB design, and embedded systems",
+    "year": "2023-24",
+    "icon": "users"
+  },
+  {
+    "title": "International Finalist",
+    "description": "Top 10 finish at Asian Robotics Championship, Tokyo",
+    "year": "2024",
+    "icon": "globe"
+  },
+  {
+    "title": "Best Club Award",
+    "description": "Voted best technical club at VIT for 3 consecutive years",
+    "year": "2022-24",
+    "icon": "medal"
+  }
+]

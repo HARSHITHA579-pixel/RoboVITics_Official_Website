@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RoboVITics</title>
+  <meta name="description"
+    content="RoboVITics is VIT's premier robotics club, building combat bots, legged robots, and humanoid systems. Join us to engineer the future." />
+  <meta property="og:title" content="RoboVITics" />
+  <meta property="og:description"
+    content="Combat bots. Legged robots. Humanoid systems. Engineering the future at VIT." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+
+<body>
+  <!-- Boot Sequence Overlay -->
+  <div id="boot-overlay">
+    <div id="boot-terminal"></div>
+    <div id="boot-logo">
+      <span class="logo-text">RoboVITics</span>
+      <span class="logo-tagline">SYSTEMS ONLINE</span>
+    </div>
+    <div id="boot-scanner"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div id="custom-cursor">
+    <svg viewBox="0 0 40 40" width="40" height="40">
+      <circle cx="20" cy="20" r="15" fill="none" stroke="#577C8E" stroke-width="1" opacity="0.6" />
+      <circle cx="20" cy="20" r="3" fill="none" stroke="#577C8E" stroke-width="1.5" />
+      <line x1="20" y1="0" x2="20" y2="12" stroke="#577C8E" stroke-width="1" opacity="0.4" />
+      <line x1="20" y1="28" x2="20" y2="40" stroke="#577C8E" stroke-width="1" opacity="0.4" />
+      <line x1="0" y1="20" x2="12" y2="20" stroke="#577C8E" stroke-width="1" opacity="0.4" />
+      <line x1="28" y1="20" x2="40" y2="20" stroke="#577C8E" stroke-width="1" opacity="0.4" />
+    </svg>
+  </div>
+
+  <!-- Ambient Particles Canvas -->
+  <canvas id="ambient-particles"></canvas>
+
+  <!-- ===== HAMBURGER NAV ===== -->
+  <nav id="hamburger-nav">
+    <button id="nav-toggle" class="interactive" aria-label="Menu">
+      <span class="nav-bar"></span>
+      <span class="nav-bar"></span>
+      <span class="nav-bar"></span>
+    </button>
+    <div id="nav-menu" class="nav-menu">
+      <div class="nav-menu-inner">
+        <a href="#hero" class="nav-link interactive" data-section="Home">01 // HOME</a>
+        <a href="#about-vit" class="nav-link interactive" data-section="About VIT">02 // ABOUT VIT</a>
+        <a href="#about-us" class="nav-link interactive" data-section="About Us">03 // ABOUT US</a>
+        <a href="#sponsors" class="nav-link interactive" data-section="Sponsors">04 // SPONSORS</a>
+        <a href="#events" class="nav-link interactive" data-section="Events">05 // EVENTS</a>
+        <a href="#domains" class="nav-link interactive" data-section="Domains">06 // DOMAINS</a>
+        <a href="#teams" class="nav-link interactive" data-section="Teams">07 // TEAMS</a>
+        <a href="#achievements" class="nav-link interactive" data-section="Achievements">08 // ACHIEVEMENTS</a>
+        <a href="#gallery" class="nav-link interactive" data-section="Gallery">09 // GALLERY</a>
+        <a href="#our-team" class="nav-link interactive" data-section="Operators">10 // OPERATORS</a>
+        <a href="#socials" class="nav-link interactive" data-section="Connect">11 // CONNECT</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== FLOATING ROBOT TERMINAL BUTTON ===== -->
+  <div id="robot-btn" class="interactive">
+    <div class="robot-body">
+      <div class="robot-head">
+        <div class="robot-eye left"></div>
+        <div class="robot-eye right"></div>
+        <div class="robot-antenna"></div>
+      </div>
+      <div class="robot-torso">
+        <div class="robot-light"></div>
+      </div>
+    </div>
+    <div class="robot-pulse"></div>
+    <span class="robot-help-label">Help</span>
+  </div>
+
+  <!-- ===== TERMINAL OVERLAY ===== -->
+  <div id="terminal-overlay" class="terminal-overlay hidden">
+    <div class="terminal-overlay-bg"></div>
+    <div id="terminal" class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <span class="terminal-title">robovitics@system: ~</span>
+        <button id="terminal-close" class="terminal-close-btn interactive">✕</button>
+      </div>
+      <div id="terminal-output" class="terminal-output"></div>
+      <div class="terminal-input-line">
+        <span class="terminal-prompt">$&gt;</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false"
+          placeholder="Type 'help' to get started..." />
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content" class="content-hidden">
+
+    <!-- 1. Hero / Landing -->
+    <section id="hero">
+      <canvas id="hero-canvas"></canvas>
+      <div class="hero-overlay">
+        <h1 class="hero-title">RoboVITics</h1>
+        <p class="hero-subtitle">The Official Robotics club of VIT</p>
+        <a href="#about-us">
+          <button id="explore-btn" class="interactive">
+            <span class="btn-text">EXPLORE</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </a>
+      </div>
+      <div class="hero-decor">SYS.ONLINE // LAT 12.97°N // STATUS: ACTIVE</div>
+    </section>
+
+    <!-- 2. About VIT -->
+    <section id="about-vit" class="section">
+      <div class="blueprint-bg"></div>
+      <div class="container">
+        <div class="metal-plate plate-left">
+          <h2 class="section-title" data-text="About VIT">About <span class="accent">VIT</span></h2>
+          <p>Vellore Institute of Technology stands as one of India's premier engineering institutions, fostering
+            innovation and technological excellence since 1984. With a sprawling campus that houses state-of-the-art
+            laboratories and research facilities, VIT has become a breeding ground for the next generation of engineers,
+            scientists, and innovators.</p>
+          <p>The university's commitment to hands-on learning and interdisciplinary collaboration makes it the perfect
+            home for cutting-edge robotics research and development.</p>
+        </div>
+        <div class="metal-plate plate-right">
+          <div class="schematic-overlay"></div>
+          <div class="stat-grid">
+            <div class="stat-block interactive">
+              <span class="stat-number">40+</span>
+              <span class="stat-label">Years of Excellence</span>
+            </div>
+            <div class="stat-block interactive">
+              <span class="stat-number">50K+</span>
+              <span class="stat-label">Students</span>
+            </div>
+            <div class="stat-block interactive">
+              <span class="stat-number">200+</span>
+              <span class="stat-label">Clubs & Chapters</span>
+            </div>
+            <div class="stat-block interactive">
+              <span class="stat-number">#1</span>
+              <span class="stat-label">Private University</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. About Us — Redesigned -->
+    <section id="about-us" class="section">
+      <div class="blueprint-bg"></div>
+      <div class="container">
+        <h2 class="section-title center" data-text="About Us">About <span class="accent">Us</span></h2>
+        <div class="about-us-grid">
+          <div class="about-card about-mission metal-plate">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="24,4 44,18 38,40 10,40 4,18" />
+                <circle cx="24" cy="24" r="6" opacity="0.5" />
+              </svg>
+            </div>
+            <h3>Our Mission</h3>
+            <p>RoboVITics is VIT's flagship robotics club — a forge where raw engineering talent is hammered into
+              competition-grade machines. We don't just study robotics; we build them, break them, and build them
+              stronger.</p>
+          </div>
+          <div class="about-card about-numbers metal-plate">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="8" y="8" width="32" height="32" rx="3" />
+                <line x1="16" y1="16" x2="32" y2="16" opacity="0.5" />
+                <line x1="16" y1="24" x2="28" y2="24" opacity="0.5" />
+                <line x1="16" y1="32" x2="24" y2="32" opacity="0.5" />
+              </svg>
+            </div>
+            <h3>By the Numbers</h3>
+            <div class="about-stats-row">
+              <div class="about-stat"><span class="about-stat-val">150+</span><span
+                  class="about-stat-lbl">Members</span></div>
+              <div class="about-stat"><span class="about-stat-val">3</span><span class="about-stat-lbl">Divisions</span>
+              </div>
+              <div class="about-stat"><span class="about-stat-val">10+</span><span class="about-stat-lbl">Bots
+                  Built</span></div>
+              <div class="about-stat"><span class="about-stat-val">2018</span><span
+                  class="about-stat-lbl">Founded</span></div>
+            </div>
+          </div>
+          <div class="about-card about-code metal-plate">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="16,12 8,24 16,36" />
+                <polyline points="32,12 40,24 32,36" />
+                <line x1="28" y1="8" x2="20" y2="40" />
+              </svg>
+            </div>
+            <h3>What We Do</h3>
+            <p>Three specialized divisions push the boundaries: <strong>Orcus</strong> builds arena combat bots,
+              <strong>Artemis</strong> engineers legged locomotion platforms, and <strong>Avatar</strong> develops
+              humanoid dexterous systems.
+            </p>
+          </div>
+          <div class="about-card about-philosophy metal-plate">
+            <div class="about-card-icon secondary">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="24" cy="24" r="18" />
+                <path d="M24 6v36M6 24h36" opacity="0.3" />
+                <circle cx="24" cy="24" r="8" />
+                <circle cx="24" cy="24" r="2" />
+              </svg>
+            </div>
+            <h3>Build. Battle. Innovate.</h3>
+            <p>From midnight soldering sessions to international arenas, we live at the intersection of engineering
+              precision and creative chaos. Every bolt tightened, every line of code pushed — it all leads to machines
+              that move, think, and fight.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors -->
+    <section id="sponsors" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Our Sponsors">Our <span class="accent">Sponsors</span></h2>
+        <p class="section-subtitle">Powering innovation through partnership</p>
+        <div id="sponsors-grid" class="sponsors-grid"></div>
+      </div>
+    </section>
+
+    <!-- 4. Events (Split Layout with PCB Background) -->
+    <section id="events" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Event Matrix">Event <span class="accent">Matrix</span></h2>
+        <p class="section-subtitle">Select an event to inspect its data</p>
+        <div id="events-layout" class="events-layout">
+          <svg id="pcb-traces" class="pcb-traces-bg"></svg>
+          <div id="event-expanded" class="event-expanded"></div>
+          <div id="events-list" class="events-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Domains -->
+    <section id="domains" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Operational Domains">Operational <span class="accent">Domains</span>
+        </h2>
+        <div class="domain-toggle-container">
+          <span class="toggle-label active interactive" id="tech-label">TECHNICAL</span>
+          <div id="domain-toggle" class="domain-toggle interactive">
+            <div class="toggle-switch"></div>
+          </div>
+          <span class="toggle-label interactive" id="nontech-label">NON-TECHNICAL</span>
+        </div>
+        <div id="domains-grid" class="domains-grid"></div>
+      </div>
+    </section>
+
+    <!-- 6. Teams -->
+    <section id="teams" class="section">
+      <h2 class="section-title center" data-text="Technical Teams">Technical <span class="accent">Teams</span></h2>
+      <div id="teams-container" class="teams-container">
+        <div class="team-column interactive" data-team="orcus">
+          <img class="team-bg-image" src="https://picsum.photos/seed/orcus-bot/800/600" alt="Orcus Combat Bot" />
+          <div class="team-label">
+            <h3>ORCUS</h3>
+            <p>Combat Bots</p>
+            <span class="team-click-hint">Click to explore →</span>
+          </div>
+          <div class="team-info">
+            <h3>ORCUS — Combat Division</h3>
+            <p>The arena is our proving ground. Orcus engineers design and fabricate heavyweight combat robots equipped
+              with devastating kinetic energy weapons — from drum spinners that shatter titanium to pneumatic flippers
+              that launch opponents airborne.</p>
+            <ul>
+              <li>Kinetic drum spinners up to 15,000 RPM</li>
+              <li>Pneumatic flipper systems at 200 PSI</li>
+              <li>AR500 steel armor plating</li>
+              <li>Custom ESC and failsafe systems</li>
+            </ul>
+            <div class="team-stats">
+              <div class="ts"><span class="ts-val">12</span><span class="ts-label">Members</span></div>
+              <div class="ts"><span class="ts-val">5</span><span class="ts-label">Bots Built</span></div>
+              <div class="ts"><span class="ts-val">3</span><span class="ts-label">Championships</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="team-column interactive" data-team="artemis">
+          <img class="team-bg-image" src="https://picsum.photos/seed/artemis-quad/800/600" alt="Artemis Quadruped" />
+          <div class="team-label">
+            <h3>ARTEMIS</h3>
+            <p>Legged Robotics</p>
+            <span class="team-click-hint">Click to explore →</span>
+          </div>
+          <div class="team-info">
+            <h3>ARTEMIS — Legged Robotics Division</h3>
+            <p>Wheels are limiting. Artemis builds multi-legged autonomous platforms capable of traversing rough
+              terrain, climbing stairs, and maintaining balance on unstable surfaces.</p>
+            <ul>
+              <li>12-DOF quadruped platforms</li>
+              <li>Real-time inverse kinematics engine</li>
+              <li>LiDAR + depth camera SLAM navigation</li>
+              <li>Custom servo brackets &amp; linkages</li>
+            </ul>
+            <div class="team-stats">
+              <div class="ts"><span class="ts-val">10</span><span class="ts-label">Members</span></div>
+              <div class="ts"><span class="ts-val">3</span><span class="ts-label">Platforms</span></div>
+              <div class="ts"><span class="ts-val">2</span><span class="ts-label">Awards</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="team-column interactive" data-team="avatar">
+          <img class="team-bg-image" src="https://picsum.photos/seed/avatar-hand/800/600" alt="Avatar Robotic Hand" />
+          <div class="team-label">
+            <h3>AVATAR</h3>
+            <p>Humanoid Systems</p>
+            <span class="team-click-hint">Click to explore →</span>
+          </div>
+          <div class="team-info">
+            <h3>AVATAR — Humanoid Division</h3>
+            <p>The pinnacle of robotic engineering. Avatar develops anthropomorphic robotic systems with human-like
+              dexterity.</p>
+            <ul>
+              <li>20-DOF tendon-driven hand system</li>
+              <li>Linear actuator finger mechanisms</li>
+              <li>Force-feedback tactile sensors</li>
+              <li>Bio-inspired compliant joints</li>
+            </ul>
+            <div class="team-stats">
+              <div class="ts"><span class="ts-val">8</span><span class="ts-label">Members</span></div>
+              <div class="ts"><span class="ts-val">2</span><span class="ts-label">Prototypes</span></div>
+              <div class="ts"><span class="ts-val">4</span><span class="ts-label">Papers</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Achievements — Redesigned as Timeline Cards -->
+    <section id="achievements" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Achievements">Achievements <span class="accent"></span></h2>
+        <p class="section-subtitle">Click any card to reveal details</p>
+        <div id="achievements-grid" class="achievements-grid"></div>
+      </div>
+    </section>
+
+    <!-- 8. Gallery -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Visual Archives">Visual <span class="accent">Archives</span></h2>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- 9. Our Team -->
+    <section id="our-team" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="The Operators">The <span class="accent">Operators</span></h2>
+        <div id="team-cards" class="team-cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- 10. Socials — Redesigned -->
+    <section id="socials" class="section">
+      <div class="container">
+        <h2 class="section-title center" data-text="Connect With Us">Connect <span class="accent">With Us</span></h2>
+        <div id="socials-grid" class="socials-cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="site-footer">
+      <div class="footer-glow"></div>
+      <div class="footer-circuit-lines"></div>
+      <div class="footer-content">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="footer-logo">RoboVITics</span>
+            <p class="footer-tagline">VIT's Official Robotics Club — Building machines that move, think, and fight.</p>
+            <div class="footer-status">
+              <span class="status-dot"></span>
+              <span>All systems operational</span>
+            </div>
+            <div class="footer-cta">
+              <a href="mailto:robovitics@vit.ac.in" class="footer-email-btn interactive">robovitics@vit.ac.in →</a>
+            </div>
+          </div>
+          <div class="footer-columns">
+            <div class="footer-col">
+              <h4>Navigate</h4>
+              <a href="#hero" class="interactive">Home</a>
+              <a href="#about-us" class="interactive">About Us</a>
+              <a href="#events" class="interactive">Events</a>
+              <a href="#teams" class="interactive">Teams</a>
+              <a href="#achievements" class="interactive">Achievements</a>
+            </div>
+            <div class="footer-col">
+              <h4>Explore</h4>
+              <a href="#gallery" class="interactive">Gallery</a>
+              <a href="#our-team" class="interactive">Our Team</a>
+              <a href="#domains" class="interactive">Domains</a>
+              <a href="#socials" class="interactive">Connect</a>
+            </div>
+            <div class="footer-col">
+              <h4>Contact</h4>
+              <a href="mailto:robovitics@vit.ac.in" class="interactive">robovitics@vit.ac.in</a>
+              <a href="tel:+919876543210" class="interactive">+91 98765 43210</a>
+              <span class="footer-address">VIT Vellore, Tamil Nadu 632014</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-line"></div>
+          <div class="footer-bottom-content">
+            <p>&copy; 2025 RoboVITics — VIT Vellore</p>
+            <p class="footer-meta">v2.4.1 · Uptime 99.97%</p>
+            <p class="footer-built">Built with <span class="secondary-accent">♦</span> precision engineering</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
